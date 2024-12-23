@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Game Of Thrones
+    </title>
+    <link rel="stylesheet" href="got.css">
+    <link rel="shortcut icon" type="x-icon" href="IMAGE/netflix.png">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <ul class="icons">
+                <li>
+                    <div class="navbar_got">
+                        <img src="IMAGE/netflixlogo.png" alt="netflix" class="logo">
+                    </div>
+                </li>
+                <li><a href="site.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+</body>
+<main>
+    <div class="c1">
+        <img src="poster/got.jpg" alt="got" class="got">
+    </div>
+    <div class="c2">
+        NETFLIX
+    </div>
+    <div class="c3">
+        ORIGINAL
+    </div>
+    <div class="c4">
+        GAME OF THRONES
+    </div>
+    <div class="c5">
+        2011
+    </div>
+    <div class="c6">
+        |
+    </div>
+    <div class="c7">
+        8 Seasons
+    </div>
+    <div class="c8">
+        |
+    </div>
+    <div class="c9">
+        16+
+    </div>
+    <div class="tabs-container">
+        <ul class="tabs">
+            <li id="overview-tab" class="active">Overview</li>
+            <li id="season-episodes-tab">Season & Episodes</li>
+        </ul>
+    </div>
+    <div id="content">
+        <div id="overview-content" class="tab-content active">
+            <ul class="p1">
+                <li>Game of Thrones is a sprawling epic set in the Mythical land of Westeros, where noble families
+                    battle for control of the Iron Throne amidst a backdrop of political intrigue and shifting
+                    alliances. The series is renowned for its complex characters, unexpected plot twists, and a gritty,
+                    realistic portrayal of power and betrayal. As the struggle for dominance unfolds, the looming threat
+                    of an ancient, supernatural enemy adds a dramatic layer to the ongoing conflict. </li>
+            </ul>
+            <ul class="p2">
+                <li class="t1">Starring</li>
+                <li>Emilia Clarke, Peter Dinklage, Kit Harington</li>
+            </ul>
+            <ul class="p3">
+                <li class="t2">Created By</li>
+                <li>D.B. Weiss, David Benioff</li>
+            </ul>
+            <ul class="p4">
+                <li class="t3">Genre</li>
+                <li>Action, Drama, Suspense, Thriller</li>
+            </ul>
+        </div>
+        <div id="season-episodes-content" class="tab-content">
+            <label for="season-select">Select Season:</label>
+            <select id="season-select">
+                <option value="season1">Season 1</option>
+                <option value="season2">Season 2</option>
+                <option value="season3">Season 3</option>
+                <option value="season4">Season 4</option>
+                <option value="season5">Season 5</option>
+                <option value="season6">Season 6</option>
+                <option value="season7">Season 7</option>
+                <option value="season8">Season 8</option>
+            </select>
+
+            <ul class="episode-list" id="episode-list">
+                <!-- Episode list will be populated dynamically -->
+            </ul>
+        </div>
+    </div>
+</main>
+<script>
+    const episodes = {
+        season1: [
+            { name: "Episode 1", link: "MOVIES/GOT/Game of Thrones S01E01.mp4" },
+            { name: "Episode 2", link: "MOVIES/GOT/Game of Thrones S01E02.mp4" },
+            { name: "Episode 3", link: "MOVIES/GOT/Game of Thrones S01E03.mp4" },
+            { name: "Episode 4", link: "MOVIES/GOT/Game of Thrones S01E04.mp4" },
+            { name: "Episode 5", link: "MOVIES/GOT/Game of Thrones S01E05.mp4" },
+            { name: "Episode 6", link: "MOVIES/GOT/Game of Thrones S01E06.mp4" },
+            { name: "Episode 7", link: "MOVIES/GOT/Game of Thrones S01E07.mp4" },
+            { name: "Episode 8", link: "MOVIES/GOT/Game of Thrones S01E08.mp4" },
+            { name: "Episode 9", link: "MOVIES/GOT/Game of Thrones S01E09.mp4" },
+            { name: "Episode 10", link: "MOVIES/GOT/Game of Thrones S01E10.mp4" },
+        ],
+        season2: [
+            { name: "Episode 1", link: "MOVIES/GOT/Game of Thrones S02E01.mp4" },
+            { name: "Episode 2", link: "MOVIES/GOT/Game of Thrones S02E02.mp4" },
+            // Add all season 2 episodes here
+        ],
+        // Add more seasons...
+    };
+
+    document.getElementById("overview-tab").addEventListener("click", function () {
+        showTabContent("overview");
+    });
+
+    document.getElementById("season-episodes-tab").addEventListener("click", function () {
+        showTabContent("season-episodes");
+    });
+
+    document.getElementById("season-select").addEventListener("change", function () {
+        const selectedSeason = this.value;
+        const episodeList = document.getElementById("episode-list");
+
+        // Clear existing episode list
+        episodeList.innerHTML = '';
+
+        // Populate episodes for the selected season
+        episodes[selectedSeason].forEach(episode => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = episode.link;
+            a.textContent = episode.name;
+            a.classList.add("episode-btn");
+            li.appendChild(a);
+            episodeList.appendChild(li);
+        });
+    });
+
+    function showTabContent(tab) {
+        // Remove active class from all tabs and content
+        document.querySelectorAll(".tabs li").forEach(tab => tab.classList.remove("active"));
+        document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
+
+        // Add active class to the selected tab and corresponding content
+        document.getElementById(tab + "-tab").classList.add("active");
+        document.getElementById(tab + "-content").classList.add("active");
+    }
+
+    // Initialize default season (Season 1)
+    document.getElementById("season-select").dispatchEvent(new Event('change'));
+</script>
+
+</html>

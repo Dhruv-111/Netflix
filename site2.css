@@ -1,0 +1,47 @@
+/* General styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000; /* Black background for contrast */
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    animation: vanishAndReappearOnce 4s ease-in-out forwards;
+}
+
+/* Keyframe animation for vanishing from right to left and reappearing from left to right */
+@keyframes vanishAndReappearOnce {
+    0% {
+        opacity: 1;
+        clip-path: inset(0% 0% 0% 0%); /* Full image is visible */
+    }
+    30% {
+        opacity: 0;
+        clip-path: inset(0% 0% 0% 100%); /* Image vanishes from right to left */
+    }
+    40% {
+        opacity: 0;
+        clip-path: inset(0% 100% 0% 0%); /* Image fully hidden */
+    }
+    70% {
+        opacity: 1;
+        clip-path: inset(0% 100% 0% 0%); /* Image starts reappearing from left to right */
+    }
+    100% {
+        opacity: 1;
+        clip-path: inset(0% 0% 0% 0%); /* Full image is visible again */
+    }
+}
